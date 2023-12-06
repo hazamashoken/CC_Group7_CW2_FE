@@ -4,7 +4,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import z from "zod";
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
-
+import Link from "next/link";
+import {CardContent,CardFooter} from "@/components/ui/card"
 import { InputForm } from "@/components/forms/input";
 import { TUserPostIn, signupAction } from "../_actions/signup-action";
 import { useTransition } from "react";
@@ -32,6 +33,7 @@ export function SignUpForm(
   const router = useRouter();
   const [pending, startTransaction] = useTransition();
   const [showPassword, setShowPassword] = React.useState<boolean>(false);
+  const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const form = useForm({
     criteriaMode: "all",
     resolver: zodResolver(signupSchema),
@@ -74,6 +76,7 @@ export function SignUpForm(
           className
         )}
       >
+      <CardContent className="grid gap-4">
         <div className="grid w-full grid-cols-2 gap-3 sm:grid-cols-10">
           <InputForm
             label="First Name"
@@ -90,14 +93,14 @@ export function SignUpForm(
             isRequired
           />
           <InputForm
-            label="email"
+            label="Email"
             name="email"
             form={form}
             className="col-span-5"
             isRequired
           />
           <InputForm
-            label="username"
+            label="Username"
             name="username"
             form={form}
             className="col-span-5"
@@ -105,7 +108,7 @@ export function SignUpForm(
           />
           <div className="col-span-5" />
           <InputForm
-            label="password"
+            label="Password"
             name="password"
             form={form}
             className="col-span-4"
@@ -120,6 +123,18 @@ export function SignUpForm(
             {showPassword ? <EyeOff /> : <Eye />}
           </div>
         </div>
+        </CardContent>
+        <CardFooter className="flex flex-col">
+        <div className="grid grid-cols-2 gap-3 mt-2">
+        <Link href="/login" className="w-full" prefetch={false}>
+              <Button
+                variant={"outline"}
+                className="w-full rounded-xl"
+                disabled={isLoading}
+              >
+                Back
+              </Button>
+        </Link>
         <Button
           type="submit"
           className="self-center"
@@ -130,6 +145,8 @@ export function SignUpForm(
           )}
           Sign Up
         </Button>
+      </div>
+      </CardFooter>
       </form>
     </Form>
   );

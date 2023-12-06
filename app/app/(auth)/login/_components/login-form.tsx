@@ -8,6 +8,7 @@ import React from "react";
 import z from "zod";
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
+import {CardContent,CardFooter} from "@/components/ui/card"
 import { toast } from "sonner";
 import { InputForm } from "@/components/forms/input";
 import { Loader2Icon } from "lucide-react";
@@ -60,20 +61,21 @@ export function LoginForm(
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="flex flex-col gap-3 text-muted"
-        >
-          <div className="flex flex-col gap-5">
+          className="flex flex-col gap-3 text-muted">
+          <CardContent className="grid gap-4">
+            <div className="grid gap-2">
             <InputForm
-              label="username"
+              label="Username"
               name="username"
               form={form}
               className="col-span-5"
               placeholder="username@email.com"
               isRequired
             />
-            <div className="col-span-2">
+            </div>
+           <div className="grid gap-2">
               <InputForm
-                label="password"
+                label="Password"
                 name="password"
                 placeholder="********"
                 form={form}
@@ -81,7 +83,8 @@ export function LoginForm(
                 isRequired
               />
             </div>
-          </div>
+          </CardContent>
+          <CardFooter className="flex flex-col">
           <div className="grid grid-cols-2 gap-3 mt-2">
             <Button
               type="submit"
@@ -103,6 +106,7 @@ export function LoginForm(
               </Button>
             </Link>
           </div>
+          </CardFooter>
         </form>
       </Form>
     </>
