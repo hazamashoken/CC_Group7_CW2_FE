@@ -20,9 +20,6 @@ export default async function SignupPage() {
     <Card>
         <CardHeader className="space-y-1">
           <CardTitle className="text-2xl text-center">Sign Up</CardTitle>
-          <CardDescription className="text-center">
-            Enter your email and password to login
-          </CardDescription>
         </CardHeader>
       <SignUpForm />
       </Card>

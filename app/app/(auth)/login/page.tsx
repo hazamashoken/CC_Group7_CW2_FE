@@ -27,7 +27,7 @@ export default async function LoginPage(props: ILoginFormProps) {
       <div className="w-full m-auto bg-white lg:max-w-lg">
       <Card>
           <CardHeader className="space-y-1">
-            <CardTitle className="text-2xl text-center">Login In</CardTitle>
+            <CardTitle className="text-2xl text-center">Login</CardTitle>
             <CardDescription className="text-center">
               Enter your email and password to login
             </CardDescription>
