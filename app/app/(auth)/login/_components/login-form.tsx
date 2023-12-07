@@ -9,7 +9,7 @@ import z from "zod";
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import {CardContent,CardFooter} from "@/components/ui/card"
-import { toast } from "sonner";
+import { toast,Toaster } from "sonner";
 import { InputForm } from "@/components/forms/input";
 import { Loader2Icon } from "lucide-react";
 
@@ -86,6 +86,7 @@ export function LoginForm(
           </CardContent>
           <CardFooter className="flex flex-col">
           <div className="grid grid-cols-2 gap-3 mt-2">
+          <Toaster />
             <Button
               type="submit"
               className="rounded-xl"
@@ -97,6 +98,7 @@ export function LoginForm(
               Login
             </Button>
             <Link href="/signup" className="w-full" prefetch={false}>
+            <Toaster />
               <Button
                 variant={"outline"}
                 className="w-full rounded-xl"

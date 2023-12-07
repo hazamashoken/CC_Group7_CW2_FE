@@ -12,7 +12,7 @@ import { useTransition } from "react";
 import { cn } from "@/lib/utils";
 import { Eye, EyeOff, Loader2Icon } from "lucide-react";
 import React from "react";
-import { toast } from "sonner";
+import { toast,Toaster } from "sonner";
 import { useRouter } from "next/navigation";
 
 export const signupSchema = z.object({
@@ -126,6 +126,7 @@ export function SignUpForm(
         </CardContent>
         <CardFooter className="flex flex-col">
         <div className="grid grid-cols-2 gap-3 mt-2">
+        <Toaster />
         <Link href="/login" className="w-full" prefetch={false}>
               <Button
                 variant={"outline"}
