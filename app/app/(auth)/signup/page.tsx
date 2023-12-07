@@ -7,7 +7,7 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
+} from "@/components/ui/card";
 
 export default async function SignupPage() {
   const session = await getServerSession(authOptions);
@@ -15,15 +15,13 @@ export default async function SignupPage() {
     redirect("/dashboard");
   }
   return (
-    <div className="relative flex flex-col justify-center items-center min-h-screen overflow-hidden">
-    <div className="w-full m-auto bg-white lg:max-w-lg">
-    <Card>
+    <div className="relative flex flex-col items-center justify-center min-h-screen">
+      <Card>
         <CardHeader className="space-y-1">
           <CardTitle className="text-2xl text-center">Sign Up</CardTitle>
         </CardHeader>
-      <SignUpForm />
+        <SignUpForm />
       </Card>
-      </div>
     </div>
   );
 }
