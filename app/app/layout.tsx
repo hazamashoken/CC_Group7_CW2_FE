@@ -5,6 +5,7 @@ import { Toaster } from "sonner";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth/authOptions";
 import { TopBar } from "./_components/navbar";
+import { Providers } from "@/components/providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,11 +22,13 @@ export default async function RootLayout({
   const session = await getServerSession(authOptions);
   return (
     <html lang="en">
-      <body className={inter.className}>
-        {session && <TopBar session={session} />}
-        {children}
-        <Toaster />
-      </body>
+      <Providers>
+        <body className={inter.className}>
+          {session && <TopBar session={session} />}
+          {children}
+          <Toaster />
+        </body>
+      </Providers>
     </html>
   );
 }
