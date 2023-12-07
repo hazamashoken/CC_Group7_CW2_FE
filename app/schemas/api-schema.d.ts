@@ -8,10 +8,28 @@ export interface paths {
   "/api/reservables/": {
     /** Get Reservables */
     get: operations["reservation_reservables_controller_get_reservables"];
+    /** Post Reservable */
+    post: operations["reservation_reservables_controller_post_reservable"];
+  };
+  "/api/reservables/{reservable_id}/": {
+    /** Get Reservable By Id */
+    get: operations["reservation_reservables_controller_get_reservable_by_id"];
+    /** Delete Reservable */
+    delete: operations["reservation_reservables_controller_delete_reservable"];
+    /** Patch Reservable */
+    patch: operations["reservation_reservables_controller_patch_reservable"];
   };
   "/api/reservation/": {
-    /** Get Reservables */
-    get: operations["reservation_reservation_controller_get_reservables"];
+    /** Get Reservation */
+    get: operations["reservation_reservation_controller_get_reservation"];
+    /** Post Reservation */
+    post: operations["reservation_reservation_controller_post_reservation"];
+  };
+  "/api/reservation/{reservation_id}/": {
+    /** Get Reservation By Id */
+    get: operations["reservation_reservation_controller_get_reservation_by_id"];
+    /** Delete Reservation */
+    delete: operations["reservation_reservation_controller_delete_reservation"];
   };
   "/api/auth/login/": {
     /**
@@ -87,8 +105,8 @@ export type webhooks = Record<string, never>;
 
 export interface components {
   schemas: {
-    /** ReservableSchema */
-    ReservableSchema: {
+    /** ReservableSchemaOut */
+    ReservableSchemaOut: {
       /** ID */
       id?: number | null;
       /** Name */
@@ -116,8 +134,48 @@ export interface components {
        */
       is_active?: boolean;
     };
-    /** ReservationSchema */
-    ReservationSchema: {
+    /** ReservableSchemaIn */
+    ReservableSchemaIn: {
+      /** Name */
+      name: string;
+      /**
+       * Capacity
+       * @default 1
+       */
+      capacity?: number;
+      /**
+       * Location
+       * @default
+       */
+      location?: string;
+      /**
+       * Description
+       * @default
+       */
+      description?: string;
+    };
+    /** ReservableSchemaPatchIn */
+    ReservableSchemaPatchIn: {
+      /** Name */
+      name: string;
+      /**
+       * Capacity
+       * @default 1
+       */
+      capacity?: number;
+      /**
+       * Location
+       * @default
+       */
+      location?: string;
+      /**
+       * Description
+       * @default
+       */
+      description?: string;
+    };
+    /** ReservationSchemaOut */
+    ReservationSchemaOut: {
       /** ID */
       id?: number | null;
       /** User */
@@ -139,6 +197,24 @@ export interface components {
        * Format: date-time
        */
       end_time: string;
+    };
+    /** ReservationSchemaIn */
+    ReservationSchemaIn: {
+      /**
+       * Start Time
+       * Format: date-time
+       */
+      start_time: string;
+      /**
+       * End Time
+       * Format: date-time
+       */
+      end_time: string;
+      /**
+       * Reservable Id
+       * @description Reservable ID
+       */
+      reservable_id: number;
     };
     /** LoginPostOut */
     LoginPostOut: {
@@ -205,19 +281,137 @@ export interface operations {
       /** @description OK */
       200: {
         content: {
-          "application/json": components["schemas"]["ReservableSchema"][];
+          "application/json": components["schemas"]["ReservableSchemaOut"][];
         };
       };
     };
   };
-  /** Get Reservables */
-  reservation_reservation_controller_get_reservables: {
+  /** Post Reservable */
+  reservation_reservables_controller_post_reservable: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ReservableSchemaIn"];
+      };
+    };
+    responses: {
+      /** @description Created */
+      201: {
+        content: {
+          "application/json": components["schemas"]["ReservableSchemaOut"];
+        };
+      };
+    };
+  };
+  /** Get Reservable By Id */
+  reservation_reservables_controller_get_reservable_by_id: {
+    parameters: {
+      path: {
+        reservable_id: number;
+      };
+    };
     responses: {
       /** @description OK */
       200: {
         content: {
-          "application/json": components["schemas"]["ReservationSchema"][];
+          "application/json": components["schemas"]["ReservableSchemaOut"];
         };
+      };
+    };
+  };
+  /** Delete Reservable */
+  reservation_reservables_controller_delete_reservable: {
+    parameters: {
+      path: {
+        reservable_id: number;
+      };
+    };
+    responses: {
+      /** @description No Content */
+      204: {
+        content: never;
+      };
+    };
+  };
+  /** Patch Reservable */
+  reservation_reservables_controller_patch_reservable: {
+    parameters: {
+      path: {
+        reservable_id: number;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ReservableSchemaPatchIn"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ReservableSchemaOut"];
+        };
+      };
+    };
+  };
+  /** Get Reservation */
+  reservation_reservation_controller_get_reservation: {
+    parameters: {
+      query?: {
+        day?: number;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ReservationSchemaOut"][];
+        };
+      };
+    };
+  };
+  /** Post Reservation */
+  reservation_reservation_controller_post_reservation: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ReservationSchemaIn"];
+      };
+    };
+    responses: {
+      /** @description Created */
+      201: {
+        content: {
+          "application/json": components["schemas"]["ReservationSchemaOut"];
+        };
+      };
+    };
+  };
+  /** Get Reservation By Id */
+  reservation_reservation_controller_get_reservation_by_id: {
+    parameters: {
+      path: {
+        reservation_id: number;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ReservationSchemaOut"];
+        };
+      };
+    };
+  };
+  /** Delete Reservation */
+  reservation_reservation_controller_delete_reservation: {
+    parameters: {
+      path: {
+        reservation_id: number;
+      };
+    };
+    responses: {
+      /** @description No Content */
+      204: {
+        content: never;
       };
     };
   };
