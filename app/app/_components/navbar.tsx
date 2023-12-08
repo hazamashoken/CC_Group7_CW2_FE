@@ -24,7 +24,7 @@ export function TopBar(props: ITopBarProps) {
   const [open, setOpen] = React.useState<boolean>(false);
 
   return (
-    <div className="flex justify-end px-2 py-1 mb-2 bg-primary">
+    <div className="sticky top-0 flex justify-end px-2 py-1 mb-2 bg-primary">
       <Sheet open={open} onOpenChange={setOpen}>
         <SheetTrigger asChild className="md:hidden">
           <Button>
