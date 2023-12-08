@@ -33,7 +33,7 @@ export async function ReservableList() {
 
   return (
     <div className="flex flex-col items-center justify-center space-y-2">
-      {is_staff && <CreateReservableDialog />}
+      <CreateReservableDialog />
       {data.map((reservable) => {
         return (
           <Card
