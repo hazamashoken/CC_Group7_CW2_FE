@@ -54,6 +54,7 @@ export function InputForm(props: IInputFormProps) {
               placeholder={placeholder}
               onFocus={onFocus}
               {...field}
+              {...rest}
             />
           </FormControl>
           {msg ? <FormMessage /> : null}

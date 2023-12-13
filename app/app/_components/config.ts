@@ -6,11 +6,11 @@ export const NAV_CONFIG = [
     path: "/dashboard",
     icon: Home
   },
-  {
-    name: "Reservation",
-    path: "/reservation",
-    icon: Clock
-  },
+  // {
+  //   name: "Reservation",
+  //   path: "/reservation",
+  //   icon: Clock
+  // },
   {
     name: "Reservable",
     path: "/reservable",

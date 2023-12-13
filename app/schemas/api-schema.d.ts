@@ -25,6 +25,10 @@ export interface paths {
     /** Post Reservation */
     post: operations["reservation_reservation_controller_post_reservation"];
   };
+  "/api/reservation/me/": {
+    /** Get Reservation By User */
+    get: operations["reservation_reservation_controller_get_reservation_by_user"];
+  };
   "/api/reservation/{reservation_id}/": {
     /** Get Reservation By Id */
     get: operations["reservation_reservation_controller_get_reservation_by_id"];
@@ -176,12 +180,12 @@ export interface components {
     };
     /** ReservationSchemaOut */
     ReservationSchemaOut: {
+      /** @description Reservable */
+      reservable: components["schemas"]["ReservableSchemaOut"];
       /** ID */
       id?: number | null;
       /** User */
       user: number;
-      /** Reservable */
-      reservable: number;
       /**
        * Created At
        * Format: date-time
@@ -247,8 +251,6 @@ export interface components {
       first_name: string;
       /** Last Name */
       last_name: string;
-      /** Is Staff */
-      is_staff: boolean;
     };
     /** UserSchemaIn */
     UserSchemaIn: {
@@ -383,6 +385,22 @@ export interface operations {
       201: {
         content: {
           "application/json": components["schemas"]["ReservationSchemaOut"];
+        };
+      };
+    };
+  };
+  /** Get Reservation By User */
+  reservation_reservation_controller_get_reservation_by_user: {
+    parameters: {
+      query?: {
+        day?: number;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ReservationSchemaOut"][];
         };
       };
     };
