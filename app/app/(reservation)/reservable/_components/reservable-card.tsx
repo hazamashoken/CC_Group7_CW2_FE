@@ -34,7 +34,7 @@ export function ReservableCard({ reservable }: { reservable: TReservableItem }) 
             <Separator />
             <CardFooter className="flex justify-center gap-2">
                 {/* <Button size={"sm"}>Reserve</Button> */}
-                <Button size={"sm"}>Edit</Button>
+                {/* <Button size={"sm"}>Edit</Button> */}
                 <Button size={"sm"} variant={"destructive"} onClick={() => setOpenDelete(true)}>
                     Delete
                 </Button>
