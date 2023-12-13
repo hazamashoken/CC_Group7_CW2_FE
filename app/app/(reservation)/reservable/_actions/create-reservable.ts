@@ -21,7 +21,8 @@ export async function createReservableAction(payload: TReservablePostInput) {
     if (error) {
         return {
             ok: false,
-            error: error
+            // @ts-ignore
+            error: error.detail ?? error
         }
     }
     revalidateTag("reservable");

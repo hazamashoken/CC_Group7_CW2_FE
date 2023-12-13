@@ -26,7 +26,8 @@ export async function updateReservableAction(payload: TReservablePostInput, rese
   if (error) {
     return {
       ok: false,
-      error: error
+      // @ts-ignore
+      error: error.detail ?? error
     }
   }
   revalidatePath("reservable");

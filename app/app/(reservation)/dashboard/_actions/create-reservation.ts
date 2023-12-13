@@ -18,7 +18,8 @@ export async function createReservation(payload: ReservationPostIn) {
     if (error) {
         return {
             ok: false,
-            error: JSON.stringify(error, null ,4)
+            // @ts-ignore
+            error: error.detail ?? error
         }
     }
     revalidateTag("reservations");

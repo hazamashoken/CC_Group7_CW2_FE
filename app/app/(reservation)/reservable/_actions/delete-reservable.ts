@@ -25,7 +25,8 @@ export async function deleteReservableAction(reservable_id: number) {
   if (error) {
     return {
       ok: false,
-      error: error
+      // @ts-ignore
+      error: error.detail ?? error
     }
   }
   revalidatePath("reservable");

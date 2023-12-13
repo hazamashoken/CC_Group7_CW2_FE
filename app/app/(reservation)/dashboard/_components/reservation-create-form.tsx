@@ -64,9 +64,9 @@ export function CreateReservationForm(props: { setOpen: any, reservableData: Res
         <Form {...form}>
             <form onSubmit={form.handleSubmit(handleSubmit)} className="flex flex-col space-y-3">
                 {/* @ts-ignore */}
-                <InputForm form={form} min={new Date().toString()} name="start_time" label="Start Time" type="datetime-local" msg/>
+                <InputForm form={form} min={new Date().toISOString().slice(0,new Date().toISOString().lastIndexOf(":"))} name="start_time" label="Start Time" type="datetime-local" msg/>
                 {/* @ts-ignore */}
-                <InputForm form={form} min={new Date().toString()} name="end_time" label="End Time" type="datetime-local" msg/>
+                <InputForm form={form} min={new Date().toISOString().slice(0,new Date().toISOString().lastIndexOf(":"))} name="end_time" label="End Time" type="datetime-local" msg/>
                 <SelectForm form={form} name="reservable_id" label="Reservable" options={options}/>
                 <Button type="submit" disabled={form.formState.isSubmitting}>Submit</Button>
             </form>
