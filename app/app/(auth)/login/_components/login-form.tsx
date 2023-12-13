@@ -70,7 +70,7 @@ export function LoginForm(
                 name="username"
                 form={form}
                 className="col-span-5"
-                placeholder="username@email.com"
+                placeholder="username"
                 isRequired
               />
             </div>
