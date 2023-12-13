@@ -26,7 +26,7 @@ export default async function RootLayout({
         <body className={inter.className}>
           {session && <TopBar session={session} />}
           {children}
-          <Toaster />
+          <Toaster richColors/>
         </body>
       </Providers>
     </html>

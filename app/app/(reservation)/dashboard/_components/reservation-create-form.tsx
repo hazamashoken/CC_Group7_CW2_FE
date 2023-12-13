@@ -26,7 +26,7 @@ type CreateReservationFormValues = z.infer<typeof CreateReservationFormSchema>
 
 
 export function CreateReservationForm(props: { setOpen: any, reservableData: ReservableListGetOut }) {
-    const { reservableData } = props;
+    const { reservableData, setOpen } = props;
     const form = useForm<CreateReservationFormValues>({
         criteriaMode: "all",
         resolver: zodResolver(CreateReservationFormSchema),
@@ -53,6 +53,7 @@ export function CreateReservationForm(props: { setOpen: any, reservableData: Res
         const { data, ok, error } = await createReservation(values);
         if (ok) {
             toast.success("Reservation created")
+            setOpen(false);
         } else {
             toast.error(error)
         }
