@@ -60,7 +60,7 @@ export function SignUpForm(
         toast.success("Successfully sign up");
         router.push("/login");
       } else {
-        toast.error("Error");
+        toast.error(res.error);
       }
     });
   };

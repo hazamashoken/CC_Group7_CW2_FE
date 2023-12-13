@@ -17,7 +17,8 @@ export async function signupAction(payload: TUserPostIn): Promise<TSVaction> {
   if (error) {
     return {
       ok: false,
-      error: error,
+      //@ ts-ignore
+      error: error.detail ?? error,
     }
   }
   return {
