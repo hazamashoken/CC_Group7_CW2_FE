@@ -1,13 +1,12 @@
-import { createGatewayClient } from "@/lib/data"
+import { createGatewayClient } from "@/lib/data";
 import { CreateReservationDialog } from "../dashboard/_components/reservation-create-dialog";
 import { Metadata } from "next";
 import { ReservationCard } from "./_components/reservation-card";
 
-
 export const metadata: Metadata = {
-  title: 'Dashboard',
-  description: 'Dashboard for reservation system',
-}
+  title: "Dashboard",
+  description: "Dashboard for reservation system",
+};
 
 export default async function DashBoardPage() {
   const client = await createGatewayClient();
@@ -22,7 +21,7 @@ export default async function DashBoardPage() {
     next: {
       tags: ["reservations"],
     },
-  })
+  });
 
   if (!response.ok || !data) {
     return <div>Error: {error}</div>;
@@ -35,10 +34,12 @@ export default async function DashBoardPage() {
   return (
     <>
       <div className="container  items-center justify-center space-y-2">
+        <div pb-8>
+          <h2 className="text-3xl font-bold tracking-tight">Dashboard</h2>
+        </div>
         <CreateReservationDialog reservableData={data} />
         <ReservationCard reservationData={myReservationResponse.data} />
       </div>
-
     </>
-  )
+  );
 }

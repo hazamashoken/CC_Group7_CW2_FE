@@ -24,16 +24,17 @@ export async function ReservableList() {
 
   return (
     <>
-    <div className="container  items-center justify-center space-y-2">
-      <CreateReservableDialog />
-      <div className="grid lg:grid-cols-4 gap-4 md:grid-cols-3 grid-cols-1">
-        {data.map((reservable, index) => {
-          return (
-            <ReservableCard key={index} reservable={reservable}/> 
-          );
-        })}
+      <div className="container  items-center justify-center space-y-2">
+        <div pb-8>
+          <h2 className="text-3xl font-bold tracking-tight">Reservable</h2>
+        </div>
+        <CreateReservableDialog />
+        <div className="grid lg:grid-cols-4 gap-4 md:grid-cols-3 grid-cols-1">
+          {data.map((reservable, index) => {
+            return <ReservableCard key={index} reservable={reservable} />;
+          })}
+        </div>
       </div>
-    </div>
     </>
   );
 }
